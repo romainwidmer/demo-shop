@@ -1,0 +1,100 @@
+.offer-card {
+    background: #fff;
+    position: relative;
+    margin: 0 15px 50px;
+    width: 280px;
+    border: solid 1px $light-gray;
+  
+    .card-wrapper {
+        overflow: hidden;
+        height: 100%;
+    }
+  
+    .img-box {
+        transform: skew(0, -4deg) translateY(-10px);
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: auto;
+            transform: skew(0, 4deg) translateY(10px);
+            transition: .3s;
+        }
+    }
+  
+    .price {
+        background-color: #B71B5D;
+        color: #fff;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        padding: 10px 15px;
+        display: flex;
+        flex-direction: column;
+        line-height: 28px;
+        span {
+            font-style: italic;
+            color: $white;
+            &:first-child {
+                font-size: 14px;
+            }
+            &:last-child {
+                font-size: 36px;
+                font-weight: bold;
+            }
+        }
+    }
+  
+    footer {
+      color: #1E2872;
+      padding: 10px;
+      h3, p {
+        margin: 0;
+        font-size: 18px;
+        font-style: italic;
+        text-align: left;
+        font-weight: 400;
+        line-height: 22px;
+      }
+    }
+  
+    &:hover {
+      .img-box {
+        img {
+          transform: skew(0, 4deg) scale(1.1);
+        }
+      }
+    }
+  
+  
+    &.exclusive {
+        background-color: #B71B5D;
+        .sticker {
+            background-color: #B71B5D;
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            padding: 10px 15px;
+            display: flex;
+            flex-direction: column;
+            line-height: 28px;
+            span {
+                color: #fff;
+                text-transform: uppercase;
+                &:first-child {
+                    font-size: 21px;
+                }
+                &:last-child {
+                    font-size: 14px;
+                }
+            }
+        }
+        footer {
+            background-color: $main-member;
+            padding: 10px;
+            p {
+                color: $white;
+                margin: 0;
+            }
+        }
+    }
+}

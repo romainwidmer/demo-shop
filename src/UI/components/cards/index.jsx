@@ -2,7 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-export const Card = ({ data: { id, title, price } }) => {
+const Card = ({ data }) => {
+    const { id, title, price, rating } = data
+
     return(
         <div className="offer-card">
             <Link to={`/offer/${id}`}>
@@ -22,3 +24,5 @@ export const Card = ({ data: { id, title, price } }) => {
         </div>
     )
 }
+
+export default Card

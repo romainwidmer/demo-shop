@@ -8,6 +8,7 @@ import AppRouter from './router'
 import CartContextProvider from './contexts/cart'
 
 // Import libs style
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Import personal styles
 import './styles/global.scss'

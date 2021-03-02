@@ -3,8 +3,10 @@
         max-width: 100px;
         margin-bottom: 30px;
     }
-    section {
+    .main {
         background: $main-blue;
+    }
+    section {
         color: $white;
         text-align: center;
         a {

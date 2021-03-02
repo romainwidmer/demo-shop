@@ -7,8 +7,8 @@ import CopyrightComponent from './copyright'
 
 const Footer = () => (
     <div className="main-footer">
-        <div className="container">
-            <section>
+        <div className="main">
+            <section className="container">
                 <img src="/img/logo.png" alt="logo" className="logo" />
                 <p className="negative-color">
                     Romain Widmer

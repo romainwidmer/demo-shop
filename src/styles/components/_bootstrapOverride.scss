@@ -1,0 +1,197 @@
+/* FORMS
+===================================================================================== */
+form {
+    label {
+        font-size: 16px;
+        margin: 0 0 5px 0;
+        position: relative;
+        &.required {
+            &:after {
+                position: absolute;
+                content: '*';
+                color: red;
+                right: -10px;
+            }
+        }
+    }
+
+    input {
+        font-size: 16px;
+        margin: 0 0 5px 0;
+        position: relative;
+        &#birthday {
+            margin-bottom: 0;
+        }
+        &.required {
+            &:after {
+                position: absolute;
+                content: '*';
+                color: red;
+                right: -10px;
+            }
+        }
+    }
+
+
+    input, textarea, .select {
+        border-radius: 0!important;
+        > div {
+            border-radius: 0;
+        }
+        &.error {
+            border: solid 1px red;
+        }
+    }
+
+    p.error {
+        margin: 5px 0 0 0;
+        color: red;
+        font-size: 14px;
+    }
+
+    .col {
+        &.buttons-wrapper {
+            padding-top: 15px;
+        }
+    }
+    .form-group {
+        &.align-right {
+          .col {
+            display: flex;
+            align-items: center;
+            max-width: 100%;
+            justify-content: flex-end;
+            a {
+              margin-right: 15px;
+            }
+          }
+        }
+      }
+
+    &.user-form {
+        .row {
+            &:last-child {
+                text-align: end;
+            }
+        }
+    }
+
+    &.login-form {
+        .form-actions .col {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            button {
+                margin-left: $smallSpace;
+            }
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
+
+
+/* ACCORDIONS
+===================================================================================== */
+.accordion {
+    &.custom-accordion {
+        ul {
+            list-style: initial;
+            padding: 0 0 0 20px;
+            margin: initial;
+            margin-bottom: 15px;
+        }
+        .card {
+            border: none;
+            border-radius: 0;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: unset;
+            padding: 0;
+            margin-bottom: 0;
+            border-bottom: solid 1px $dark-gray;
+            cursor: pointer;
+            h3 {
+                font-weight: bold;
+                font-style: italic;
+                font-size: 22px;
+            }
+            i {
+                font-size: 16px;
+                font-weight: bold;
+                transition: $transitionTime;
+            }
+        }
+        .card-body {
+            padding: 15px 0;
+            p:last-of-type {
+                margin: 0;
+            }
+        }
+        &.open {
+            .card-header i {
+                transform: rotateX(180deg);
+            }
+        }
+    }
+}
+
+
+/* NAV TABS
+===================================================================================== */
+.nav-tabs {
+    margin-bottom: $bigSpace!important;
+    border-bottom: 0;
+    .nav-link {
+        flex: 1;
+        text-align: center;
+        border: none!important;
+        border-bottom: solid 3px $dark-gray!important;
+        outline: none;
+        color: $dark-gray;
+        margin: 0 5px;
+        font-size: 18px;
+        font-style: italic;
+        font-weight: bold;
+        &:first-child {
+            margin-left: 0;
+        }
+        &:last-child {
+            margin-right: 0;
+        }
+        &.active, &:hover {
+            border-bottom: solid 3px $main-blue!important;
+            color: $main-blue!important;
+            background-color: transparent;
+        }
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i {
+                margin-right: 15px;
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+
+
+// Override the default value for the container
+@media screen and (min-width: 1200px) {
+    .container {
+      max-width: 1280px!important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+
+}
