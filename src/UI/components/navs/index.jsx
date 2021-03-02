@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 // Import custom hooks
 import useWindowResize from '../../../customHooks/useWindowResize'
@@ -7,6 +7,7 @@ import useWindowResize from '../../../customHooks/useWindowResize'
 
 // Import tools
 import * as ROUTES from '../../../tools/routes'
+import { getFormatedPrice } from '../../../tools/helpers'
 
 
 const Navbar = () => {
@@ -15,6 +16,8 @@ const Navbar = () => {
     const isMobile = useWindowResize()
 
     const user = null
+    const totalItemsInCart = 0
+    const total = 0
 
     useEffect(() => {
         document.addEventListener('scroll', () => {
@@ -43,7 +46,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="right">
-                        { isMobile && <CartIcon /> }
+                        { isMobile && <CartIcon totalItemsInCart={totalItemsInCart} isNavTop={isNavTop} isMobile={isMobile} total={total} /> }
                         <div className={`menu-toggle ${open ? 'open' : ''}`} onClick={() => setOpen(!open)}>
                             <div className="burger"></div>
                         </div>
@@ -65,7 +68,7 @@ const Navbar = () => {
                                     mon compte
                                 </NavLink>}
                             </li>
-                            { !isMobile && <CartIcon /> }
+                            { !isMobile && <CartIcon totalItemsInCart={totalItemsInCart} isNavTop={isNavTop} isMobile={isMobile} total={total} /> }
                         </ul>
                     </nav>
                 </div>
@@ -74,8 +77,47 @@ const Navbar = () => {
     )
 }
 
-const CartIcon = () => {
-    return null
+const CartIcon = ({ totalItemsInCart, isNavTop, isMobile, total }) => {
+    return (
+        <li className="nav-icon">
+            <div className={totalItemsInCart > 0 ? 'dropdown icon white active' : 'dropdown icon white'}>
+                <NavLink to={ROUTES.CART_PAGE}>
+                    {totalItemsInCart > 0 ? (
+                        <>
+                            <i className="fas fa-shopping-cart dropbtn"></i>
+                            <span>{ totalItemsInCart }</span>
+                        </>
+                    ) : (
+                        <i className="fal fa-shopping-cart dropbtn"></i>
+                    )}
+                </NavLink>
+
+                {totalItemsInCart > 0 && !isMobile &&
+                <div className="dropdown-content">
+                    <div className="content" style={{ opacity: isNavTop ? .8 : 1 }}>
+                        <div className="nb-items">
+                            <p>{ totalItemsInCart } { totalItemsInCart > 1 ? 'articles' : 'article' }</p>
+                        </div>
+
+                        <div className="total">
+                            <label>Total</label>
+                            <div className="value">
+                                <span>{ getFormatedPrice(total) }</span>
+                                <span>chf</span>
+                            </div>
+                        </div>
+
+                        <div className="link">
+                            <Link className="button blue-grey" to={ROUTES.CART_PAGE}>
+                                <label>Voir le panier</label>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </li>
+    )
 }
 
 export default Navbar
