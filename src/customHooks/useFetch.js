@@ -15,12 +15,11 @@ export default function useFetch(url) {
                 const response = (await (await fetch(`http://localhost:3001/${url}`)).json())
                 
                 if(Object.keys(response).length === 0) {
-                    throw new Error('data not found')
+                    throw new Error(`Cette offre n'est pas disponible`)
                 }
 
                 setData(response)
             } catch(err) {
-                console.log('error')
                 console.log(err)
                 setError(err)
             } finally {

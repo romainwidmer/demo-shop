@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom'
 
 // Import components
 import Banner from '../../components/banner'
+import Rating from '../../components/rating'
+import AppLoader from '../../components/loaders'
+import ErrorPage from '../error'
 
 // Import contexts
 import useFetch from '../../../customHooks/useFetch'
@@ -18,16 +21,14 @@ const OfferDetail = () => {
     useEffect(() => {
         if(data) {
             if(isOfferInCart(data)) {
-                console.log('offer in cart')
                 const offerInCart = cartItems.find(o => o.id === data.id)
                 setCount(offerInCart.qte)
             }
         }
     }, [loading])
     
-    if(loading) return <p>loading...</p>
-    if(error) return <p>error !</p>
-
+    if(loading) return <AppLoader />
+    if(error) return <ErrorPage message={error.message} />
 
     const increment = () => setCount(prev => prev + 1)
 
@@ -37,6 +38,15 @@ const OfferDetail = () => {
 
     const handleAddToCart = () => addToCart(data, count)
 
+    const ratings = () => {
+        let ratings = []
+        
+        for(let i = 0; i < data.ratings; i++) {
+            ratings.push(<Rating key={i} />)
+        }
+
+        return ratings
+    }
 
     return(
         <div className="offer-detail gradiant">
@@ -46,6 +56,11 @@ const OfferDetail = () => {
                 <div className="row">
                     <div className="col col-md-8 col-12">
                         <h2>{ data.title }</h2>
+                        <div className="details">
+                            <div className="location">Bex, VS</div>
+                            <div className="category">Excursion</div>
+                            <div className="ratings">{ ratings() }</div>
+                        </div>
                         <p>{ data.description }</p>
                     </div>
 
@@ -77,7 +92,7 @@ const OfferDetail = () => {
                             </div>
 
                             <button className="button booking" onClick={handleAddToCart}>
-                            <label>{isOfferInCart(data) ? 'update cart' : 'Add to cart'}</label>
+                            <label>{ isOfferInCart(data) ? 'update cart' : 'Add to cart' }</label>
                             </button>
                         </div>
                     </div>
@@ -88,4 +103,3 @@ const OfferDetail = () => {
 }
 
 export default OfferDetail
-

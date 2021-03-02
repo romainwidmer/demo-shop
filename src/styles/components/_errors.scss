@@ -1,9 +1,11 @@
 .not-found {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #FFD32F, #FFD32F 50%, #1E2872 50%, #1E2872);
-    margin-top: 80px;
+    .banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #FFD32F, #FFD32F 50%, #1E2872 50%, #1E2872);
+        margin-top: 80px;
+    }
     .box {
         position: relative;
         h2 {
@@ -42,10 +44,27 @@
             }
         }
     }
-    .action {
-        text-align: center;
+}
+
+.action {
+    text-align: center;
+}
+
+$nav-height: 80px;
+$footer-height: 656px;
+
+.oups {
+    min-height: calc(100vh - #{$footer-height} - #{$nav-height});
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    h1 {
+        width: 100%;
     }
 }
+
   
   
 @keyframes animate {
