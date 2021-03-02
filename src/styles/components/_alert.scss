@@ -1,0 +1,26 @@
+.custom-alert {
+    margin-bottom: 50px;
+    padding: 25px;
+    position: relative;
+    &.info {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+    }
+    &.error {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+    &.success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+    p {
+        text-align: center;
+        &.no-margin {
+            margin: 0;
+        }
+    }
+}

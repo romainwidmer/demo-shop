@@ -1,0 +1,135 @@
+/* Default style for all buttons
+ * All buttons must have a label within the <button> tag to keep the text moving along!
+ * To create a new button add the following styles
+ * Arg0: button
+ * Arg1: background-color
+ * Arg2: text-color
+============================================================================ */
+
+
+// Generic style
+%btn {
+    display: inline-block;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0px;
+    text-align: center;
+    margin: 15px 0;
+    padding: 6px 25px;
+    font-size: 16px;
+    font-style: italic;
+    position: relative;
+    outline: none!important;
+    transition: $transitionTime;
+    label {
+        margin: 0;
+        position: relative;
+        width: 100%;
+        cursor: pointer;
+        right: 0;
+        left: 50%;
+        bottom: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: translateX(-50%);
+        transition: $transitionTime;
+        @include font-roboto-condensed();
+        font-weight: 800;
+    }
+    i {
+        font-weight: initial;
+    }
+    &:hover {
+        label {
+            transform: translateX(-47%);
+        }
+    }
+    &:disabled {
+        background-color: $light-gray!important;
+        border: solid 1px $light-gray!important;
+        &:hover {
+            label {
+                transform: translateX(-50%);
+                color: inherit!important;
+                cursor: inherit;
+            }
+        }
+    }
+}
+  
+  
+.button {
+    @extend %btn;
+  
+    // A button with a blue background and the white text
+    &.blue-grey {
+        background: $main-blue;
+        border-color: $light-gray;
+        a, label, i {
+            color: $white;
+        }
+        &:hover {
+            background: $light-gray;
+            color: $main-blue;
+            a, label, i {
+                color: $main-blue;
+            }
+        }
+    }
+  
+    // A button with a yellow background and blue text
+    &.booking {
+        font-size: 24px;
+        font-weight: bold;
+        font-style: italic;
+        background: $main-yellow;
+        border-color: $main-yellow;
+        min-height: 60px;
+        width: 100%;
+        a, label, i {
+            color: $main-blue;
+            font-size: 32px;
+        }
+        &:hover {
+            background: $main-blue;
+            border-color: $main-blue;
+            a, label, i {
+                color: $main-yellow;
+            }
+        }
+  
+        &.disabled {
+            &:hover {
+                background: $light-gray;
+                color: $white;
+            }
+        }
+    }
+}
+
+a.button {
+    background: $main-blue;
+    border-color: $light-gray;
+    color: $white;
+    label {
+        color: $white;
+    }
+    &:hover {
+        background: $light-gray;
+        color: $main-blue;
+        opacity: 1;
+        label {
+            color: $main-blue;
+        }
+    }
+}
+  
+
+@media screen and (max-width: 800px) {
+    .button {
+        width: 100%;
+        padding: 6px 10px;
+    }
+}

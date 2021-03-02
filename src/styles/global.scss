@@ -1,3 +1,14 @@
+/* FONT-AWESOME PRO
+===================================================================================== */
+
+@import "~@fortawesome/fontawesome-pro/scss/fontawesome";
+@import "~@fortawesome/fontawesome-pro/scss/solid";
+@import "~@fortawesome/fontawesome-pro/scss/light";
+@import "~@fortawesome/fontawesome-pro/scss/brands";
+@import "~@fortawesome/fontawesome-pro/scss/regular";
+@import "~@fortawesome/fontawesome-pro/scss/duotone";
+
+
 /* BASE - Core with Base Variable file along with Mixins
 ===================================================================================== */
 @import './base/variables';
@@ -10,9 +21,10 @@
 /* COMPONENTS - Re-usable site elements
 ===================================================================================== */
 @import './components/bootstrapOverride';
+@import './components/button';
 @import './components/navbars';
 @import './components/banner';
 @import './components/listing';
 @import './components/cards';
+@import './components/alert';
 @import './components/footer';
-
