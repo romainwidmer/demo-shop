@@ -1,0 +1,49 @@
+.cart {
+    .resume {
+        border: 1px solid $dark-gray;
+        padding: 15px 15px 0 15px;
+        ul {
+            padding: 5px 0;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .label {
+            span {
+                &:first-child {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    span {
+        &.value {
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 700;
+        }
+        &.currency {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            margin: 0 5px;
+        }
+    }
+    .total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 0;
+        border-top: solid 1px $dark-gray;
+    }
+
+    i {
+        &:hover {
+            color: $main-yellow;
+        }
+    }
+}
