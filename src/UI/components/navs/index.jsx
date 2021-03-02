@@ -6,6 +6,7 @@ import useWindowResize from '../../../customHooks/useWindowResize'
 
 // Import contexts
 import { CartContext } from '../../../contexts/cart'
+import { AuthContext } from '../../../contexts/auth'
 
 // Import tools
 import * as ROUTES from '../../../tools/routes'
@@ -16,9 +17,9 @@ const Navbar = () => {
     const [open, setOpen] = useState(false)
     const [isNavTop, setIsNavTop] = useState(true)
     const { total, totalItemsInCart } = useContext(CartContext)
+    const { user } = useContext(AuthContext)
     const isMobile = useWindowResize()
 
-    const user = null
 
     useEffect(() => {
         document.addEventListener('scroll', () => {
@@ -41,7 +42,7 @@ const Navbar = () => {
                     <div className="logo">
                         <NavLink to={ROUTES.HOME_PAGE}>
                             <img src="/img/logo1.png" alt="logo" style={{
-                                width: isNavTop ? '75px' : '55px'
+                                width: isMobile ? 55 : isNavTop ? 75 : 55
                             }} />
                         </NavLink>
                     </div>

@@ -6,9 +6,6 @@ import Banner from '../../components/banner'
 import LoginPage from './login'
 import SignupPage from './signup'
 
-// Import custom hooks
-//import useScrollTo from '../../../customHooks/useScrollTo'
-
 // Import tools
 import { LOGIN_PAGE, SIGNUP_PAGE } from '../../../tools/routes'
 
@@ -32,8 +29,6 @@ const authNav = [
 const AuthIndex = ()  => {
     const [title, setTitle] = useState(null)
     const { id } = useParams()
-
-    //useScrollTo()
 
     useEffect(() => {
         if(id === 'login') {

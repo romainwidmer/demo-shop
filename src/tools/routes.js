@@ -10,6 +10,9 @@ export const AUTH_PAGE = '/auth/:id'
 export const LOGIN_PAGE = '/auth/login'
 export const SIGNUP_PAGE = '/auth/signup'
 
+// User
+export const USER_PAGE = '/account'
+
 // Here come the static pages
 
 // Errors

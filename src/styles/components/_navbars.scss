@@ -223,6 +223,32 @@
 }
 
 
+.side-nav {
+    position: sticky;
+    top: 80px;
+    nav {
+        border: solid 1px $light-gray;
+        padding: 15px;
+        li {
+            margin-bottom: 15px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: left;
+        }
+        button {
+            margin-bottom: 0;
+            width: 100%;
+        }
+        span {
+            cursor: pointer;
+            &:hover, &.active {
+                color: $main-yellow;
+            }
+        }
+    }
+}
+
 .sticky-nav {
     position: sticky;
     top: 60px;
@@ -351,6 +377,30 @@ nav.custom-nav-tabs {
         }
         .menu-toggle {
             display: flex;
+        }
+    }
+
+    .side-nav {
+        nav {
+            padding: 15px 15px 0;
+            h2 {
+                margin-top: 0;
+            }
+            ul {
+                display: flex;
+                align-items: center;
+                overflow: scroll;
+                margin: 0;
+                li {
+                    margin: 0 15px 15px 0;
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                    a, span {
+                        white-space: nowrap;
+                    }
+                }
+            }
         }
     }
 }

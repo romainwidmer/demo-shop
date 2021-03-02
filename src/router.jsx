@@ -1,8 +1,5 @@
-import React from 'react'
-import {  BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
-// Import tools
-import * as ROUTES from './tools/routes'
+import React, { useEffect, useContext } from 'react'
+import {  BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 // Import components
 import Navbar from './UI/components/navs'
@@ -13,6 +10,13 @@ import ListingPage from './UI/pages/listing'
 import OfferDetail from './UI/pages/offer'
 import Footer from './UI/components/footer'
 import PageNotFound from './UI/pages/error/notFound'
+import UserPage from './UI/pages/user'
+
+// Import contexts
+import { AuthContext } from './contexts/auth'
+
+// Import tools
+import * as ROUTES from './tools/routes'
 
 
 const AppRouter= () => (
@@ -27,11 +31,34 @@ const AppRouter= () => (
 
             <Route path={ROUTES.AUTH_PAGE} component={AuthPage} />
 
+            <PrivateRoute path={ROUTES.USER_PAGE} component={UserPage} />
+
             <Route component={PageNotFound} />
         </Switch>
 
         <Footer />
     </Router>
 )
+
+/**
+ * This component handle the protected routes such as everything related to the customer space
+ * If the access is denied, the router will redirect the customer on the login page
+ */
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    const { user } = useContext(AuthContext)
+
+    console.log()
+
+    useEffect(() => {
+        //getUser()
+    }, [])
+
+
+    return(
+        <Route {...rest} render={(props) => (
+            user ? <Component {...props} /> : <Redirect to={ROUTES.LOGIN_PAGE} />
+        )} />
+    )
+}
 
 export default AppRouter
