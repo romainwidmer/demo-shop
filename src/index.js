@@ -10,6 +10,7 @@ import CartContextProvider from './contexts/cart'
 // Import libs style
 
 // Import personal styles
+import './styles/global.scss'
 
 
 ReactDOM.render(

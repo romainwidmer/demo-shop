@@ -1,0 +1,39 @@
+/*
+Fonts
+==================================================================== */
+
+@mixin font-roboto() {
+    font-family: "Roboto", Arial, sans-serif;
+}
+
+@mixin font-roboto-condensed() {
+    font-family: "Roboto Condensed", Arial, sans-serif;
+}
+
+@mixin font-roboto-condensed-italic() {
+    @include font-roboto-condensed();
+    font-style: italic;
+}
+
+@mixin font-roboto-condensed-bold() {
+    @include font-roboto-condensed();
+    font-weight: 700;
+}
+
+@mixin font-roboto-condensed-bold-italic() {
+    @include font-roboto-condensed-italic();
+    font-weight: 700;
+}
+
+
+/*
+Breakpoint
+==================================================================== */
+
+@mixin breakpoint($point) {
+    @if $point == mobile {
+        @media (max-width: 800px) {
+        @content;
+        }
+    }
+}

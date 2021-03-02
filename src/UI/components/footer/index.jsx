@@ -1,11 +1,15 @@
 import React from 'react'
 
+// Import components
+import SkillListComponent from './skills'
+import CopyrightComponent from './copyright'
+
 
 const Footer = () => (
     <div className="main-footer">
         <div className="container">
             <section>
-                <img src="/img/logo.png" alt="logo-weekend" className="logo" />
+                <img src="/img/logo.png" alt="logo" className="logo" />
                 <p className="negative-color">
                     Romain Widmer
                 </p>

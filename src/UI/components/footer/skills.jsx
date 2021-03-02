@@ -38,7 +38,7 @@ const SkillListComponent = () => (
     <div className="skills">
         <div className="container">
             <nav>
-                <p className="center">{ t('footer.mySkills') }</p>
+                <p className="center">Mon terrain de jeu</p>
                 <ul>
                     {LIST.map((brand, index) => (
                         <li key={index}>

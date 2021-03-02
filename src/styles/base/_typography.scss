@@ -1,0 +1,112 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5,
+div, section, span, p, a, button {
+    @include font-roboto();
+    color: $main-blue;
+    &.negative-color {
+        color: $white;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-style: italic;
+    @include breakpoint(mobile) {
+        font-size: 36px;
+        line-height: 40px;
+    }
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+  
+h1 {
+    font-size: 45px;
+    line-height: 54px;
+    margin: 50px 0;
+    @include font-roboto-condensed-bold-italic();
+    @include breakpoint(mobile) {
+        font-size: 36px;
+        line-height: 40px;
+    }
+}
+  
+h2, h2 * {
+    font-size: 35px;
+    line-height: 44px;
+    margin: 0 0 30px 0;
+    @include font-roboto-condensed-italic();
+    @include breakpoint(mobile) {
+        font-size: 30px;
+        line-height: 34px;
+        margin: 25px 0;
+    }
+}
+  
+h3 {
+    font-size: 28px;
+    line-height: 36px;
+    margin: 30px 0;
+    text-align: left;
+    @include font-roboto-condensed();
+    @include breakpoint(mobile) {
+        font-size: 24px;
+        line-height: 30px;
+    }
+}
+  
+h4 {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 30px 0;
+    font-weight: bold;
+    font-style: italic;
+    @include breakpoint(mobile) {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+  
+h5 {
+    font-size: 18px;
+    line-height: 20px;
+    margin: 30px 0;
+}
+  
+h6 {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    margin: 30px 0;
+}
+  
+p {
+    margin-bottom: 15px;
+    @include breakpoint(mobile) {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 25px;
+    }
+    &:last-child {
+        margin-bottom: 0;
+    }
+    &.error {
+        color: red;
+        margin: 5px 0 0;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $dark-gray;
+    font-style: italic;
+    opacity: 1;
+    transition: .3s;
+    &:hover, &.active {
+        text-decoration: none;
+        color: $main-yellow;
+    }
+}
