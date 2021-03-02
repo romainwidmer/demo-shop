@@ -7,6 +7,7 @@ import useForm from '../../../customHooks/useForm'
 // Import tools
 import validateLogin from "../../../tools/formValidator/validateLogin"
 import { LOGIN_PAGE } from '../../../tools/routes'
+import { CustomButton } from '../buttons'
 
 
 const initialState = { email: '', password: '' }
@@ -58,9 +59,11 @@ export default function LoginForm({ handleLoginSubmit }) {
                     <div className="row form-actions">
                         <div className="col">
                             <Link to={LOGIN_PAGE}>Mot de passe oublié</Link>
-                            <button type="submit" className="button blue-grey" onClick={handleSubmit}>
-                                <label>Connexion</label>
-                            </button>
+                            <CustomButton 
+                                label="Connexion" 
+                                color="blue-grey" 
+                                handleClick={handleSubmit}
+                            />
                         </div>
                     </div>
                 </form>

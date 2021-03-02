@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 
 // Import custom hooks
 import useWindowResize from '../../../customHooks/useWindowResize'
@@ -16,9 +16,12 @@ import { getFormatedPrice } from '../../../tools/helpers'
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const [isNavTop, setIsNavTop] = useState(true)
+    const [offerActive, setOfferActive] = useState(false)
     const { total, totalItemsInCart } = useContext(CartContext)
     const { user } = useContext(AuthContext)
     const isMobile = useWindowResize()
+
+    const location = useLocation()
 
 
     useEffect(() => {
@@ -31,6 +34,10 @@ const Navbar = () => {
             }
         })
     }, [isNavTop])
+
+    useEffect(() => {
+        location.pathname.split('/')[1] === 'offers' ? setOfferActive(true) : setOfferActive(false)
+    }, [location])
 
     return(
         <div className="main-nav-wrapper">
@@ -57,7 +64,7 @@ const Navbar = () => {
                     <nav className={open ? 'visible' : ''}>
                         <ul>
                             <li>
-                                <NavLink to={ROUTES.LISTING_PAGE_SPORT} onClick={() => setOpen(!open)}>Offers</NavLink>
+                                <NavLink to={ROUTES.LISTING_PAGE_SPORT} onClick={() => setOpen(!open)} className={offerActive ? 'active' : ''}>Offers</NavLink>
                             </li>
                             <li className="nav-icon user">
                                 <div className="icon white">
@@ -95,27 +102,27 @@ const CartIcon = ({ totalItemsInCart, isNavTop, isMobile, total }) => {
                 </NavLink>
 
                 {totalItemsInCart > 0 && !isMobile &&
-                <div className="dropdown-content">
-                    <div className="content" style={{ opacity: isNavTop ? .8 : 1 }}>
-                        <div className="nb-items">
-                            <p>{ totalItemsInCart } { totalItemsInCart > 1 ? 'articles' : 'article' }</p>
-                        </div>
+                    <div className="dropdown-content">
+                        <div className="content" style={{ opacity: isNavTop ? .8 : 1 }}>
+                            <div className="nb-items">
+                                <p>{ totalItemsInCart } { totalItemsInCart > 1 ? 'articles' : 'article' }</p>
+                            </div>
 
-                        <div className="total">
-                            <label>Total</label>
-                            <div className="value">
-                                <span>{ getFormatedPrice(total) }</span>
-                                <span>chf</span>
+                            <div className="total">
+                                <label>Total</label>
+                                <div className="value">
+                                    <span>{ getFormatedPrice(total) }</span>
+                                    <span>chf</span>
+                                </div>
+                            </div>
+
+                            <div className="link">
+                                <Link className="button blue-grey" to={ROUTES.CART_PAGE}>
+                                    <label>Voir le panier</label>
+                                </Link>
                             </div>
                         </div>
-
-                        <div className="link">
-                            <Link className="button blue-grey" to={ROUTES.CART_PAGE}>
-                                <label>Voir le panier</label>
-                            </Link>
-                        </div>
                     </div>
-                </div>
                 }
             </div>
         </li>

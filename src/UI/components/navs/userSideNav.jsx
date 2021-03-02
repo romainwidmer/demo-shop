@@ -6,6 +6,7 @@ import OrdersPage from '../../pages/user/orders'
 
 // Import app context
 import { AuthContext } from '../../../contexts/auth'
+import { CustomButton } from '../buttons'
 
 const userNav = [
     {
@@ -43,9 +44,11 @@ const UserSideNav = ({ handleChange }) => {
                         </li>
                     ))}
                 </ul>
-                <button className="button blue-grey user-side-nav" onClick={() => handleSignOut()}>
-                    <label>Déconnexion</label>
-                </button>
+                <CustomButton 
+                    label="Déconnexion"
+                    color="blue-grey user-side-nav"
+                    handleClick={handleSignOut}
+                />
             </nav>
         </div>
     )

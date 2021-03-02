@@ -1,11 +1,13 @@
 import React from 'react'
 
+// Import components
+import { CustomButton } from '../buttons'
+
 // Import custom hooks
 import useForm from '../../../customHooks/useForm'
 
 // Import tools
 import validateSignup from "../../../tools/formValidator/validateSignup"
-
 
 
 const initialState = {
@@ -88,9 +90,11 @@ export default function SignupForm({ handleSignUpFormSubmit }) {
 
             <div className="row">
                 <div className="col col-12">
-                    <button type="submit" className="button blue-grey" onClick={handleSubmit}>
-                        <label>Créer mon compte</label>
-                    </button>
+                    <CustomButton 
+                        label="Créer mon compte" 
+                        color="blue-grey" 
+                        handleClick={handleSubmit} 
+                    />
                 </div>
             </div>
         </form>

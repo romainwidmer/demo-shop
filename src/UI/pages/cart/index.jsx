@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 // Import components
 import Banner from '../../components/banner'
+import { CustomButton } from '../../components/buttons'
+import EmptyCart from '../../components/cart/empty'
 
 // Import contexts
 import { CartContext } from '../../../contexts/cart'
@@ -11,8 +13,9 @@ import { CartContext } from '../../../contexts/cart'
 import { CURRENCY } from './../../../tools/helpers'
 
 
+
 const CartPage = () => {
-    const { cartItems, total } = useContext(CartContext)
+    const { cartItems, total, clearCart } = useContext(CartContext)
 
     return(
         <div className="cart">
@@ -53,6 +56,14 @@ const CartPage = () => {
                                     <span className="currency">{ CURRENCY }</span>
                                 </div>
                             </div>
+
+                            <div className="clear-cart">
+                                <CustomButton
+                                    label="Vider le panier"
+                                    color="blue-grey"
+                                    handleClick={clearCart}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -62,6 +73,5 @@ const CartPage = () => {
     )
 }
 
-const EmptyCart = () => <h1>Le panier est vide !!</h1>
 
 export default CartPage

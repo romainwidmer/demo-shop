@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-// Import tools
-import { HOME_PAGE } from '../../../tools/routes'
+// Import components
+import { HomeLink } from '../../components/buttons'
 
 
 const Oups = ({ message }) => (
@@ -12,9 +11,7 @@ const Oups = ({ message }) => (
         <div className="actions">
             <h2>Découvrez les offres</h2>
             <div className="action">
-                <Link to={HOME_PAGE} className="button blue-grey">
-                    <label>Découvrir</label>
-                </Link>
+                <HomeLink />
             </div>
         </div>
     </div>
