@@ -1,0 +1,44 @@
+// The banner is bigger on the homepage
+.banner {
+    position: relative;
+    height: 360px;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        filter: brightness(70%);
+    }
+    &.home {
+        height: 460px;
+    }
+    .title {
+        position: absolute;
+        top: 50%;
+        color: #fff;
+        left:0;
+        right: 0;
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        line-height: unset;
+    }
+}
+  
+  
+@media screen and (max-width: 990px) {
+    .banner {
+        height: 200px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+        &.home {
+            height: 250px;
+            img {
+                max-height: none;
+                height: 100%;
+            }
+        }
+    }
+}
