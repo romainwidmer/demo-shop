@@ -223,6 +223,7 @@
 }
 
 
+// Used in user space
 .side-nav {
     position: sticky;
     top: 80px;
@@ -252,12 +253,12 @@
 .sticky-nav {
     position: sticky;
     top: 60px;
-    z-index: 1000;
+    z-index: 1;
     background: $white;
 }
 
 // Nav with a nav-tabs look
-nav.custom-nav-tabs {
+.custom-nav-tabs {
     &.nav-tabs {
         border: none;
         ul {

@@ -1,0 +1,35 @@
+.filter-component {
+    * {
+        z-index: 10;
+    }
+    h2 {
+        margin-bottom: 15px;
+    }
+    h3 {
+        margin-top: 0;
+    }
+  
+    .selects-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        > div {
+            width: calc(100% / 3 - 33px);
+            margin: 0 15px 15px 15px;
+            min-width: 215px;
+        }
+    }
+}
+  
+  
+@media screen and (max-width: 540px) {
+    .filter-component {
+        .selects-wrapper {
+            > div {
+                width: 100%;
+                margin: 0 0 15px 0;
+            }
+        }
+    }
+}

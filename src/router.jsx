@@ -25,8 +25,11 @@ const AppRouter= () => (
 
         <Switch>
             <Route exact path={ROUTES.HOME_PAGE} component={HomePage} />
+
             <Route path={ROUTES.LISTING_PAGE} component={ListingPage} />
+            
             <Route path={ROUTES.OFFER_DETAIL_PAGE} component={OfferDetail} />
+            
             <Route path={ROUTES.CART_PAGE} component={CartPage} />
 
             <Route path={ROUTES.AUTH_PAGE} component={AuthPage} />

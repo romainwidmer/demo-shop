@@ -57,7 +57,7 @@ const Navbar = () => {
                     <nav className={open ? 'visible' : ''}>
                         <ul>
                             <li>
-                                <NavLink to={ROUTES.LISTING_PAGE} onClick={() => setOpen(!open)}>Offers</NavLink>
+                                <NavLink to={ROUTES.LISTING_PAGE_SPORT} onClick={() => setOpen(!open)}>Offers</NavLink>
                             </li>
                             <li className="nav-icon user">
                                 <div className="icon white">
