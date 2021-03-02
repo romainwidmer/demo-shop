@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Switch, Route, useParams, useLocation, NavLink } from 'react-router-dom'
+import { Switch, Route, useParams } from 'react-router-dom'
 
 // Import components
 import Banner from '../../components/banner'
