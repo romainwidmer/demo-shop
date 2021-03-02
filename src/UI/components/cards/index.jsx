@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+// Import tools
+import { CURRENCY } from '../../../tools/helpers'
+
 
 const Card = ({ data }) => {
-    const { id, title, price, rating } = data
+    const { id, title, price } = data
 
     return(
         <div className="offer-card">
@@ -13,7 +16,7 @@ const Card = ({ data }) => {
                         <img src={`https://picsum.photos/id/${id}/1920/1280`} alt="" />
                     </div>
                     <div className="price">
-                        <span>From CHF</span>
+                        <span>Dès { CURRENCY }</span>
                         <span>{ price }.-</span>
                     </div>
                     <footer>

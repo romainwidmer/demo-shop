@@ -7,13 +7,16 @@ import Banner from '../../components/banner'
 // Import contexts
 import { CartContext } from '../../../contexts/cart'
 
+// Import tools
+import { CURRENCY } from './../../../tools/helpers'
+
 
 const CartPage = () => {
     const { cartItems, total } = useContext(CartContext)
 
     return(
         <div className="cart">
-            <Banner title="Pannier" />
+            <Banner title="Panier" />
 
             <section className="container">
                 {cartItems.length >= 1 ? (
@@ -35,7 +38,7 @@ const CartPage = () => {
 
                                         <div className="price">
                                             <span className="value">{ i.price }.-</span>
-                                            <span className="currency">CHF</span>
+                                            <span className="currency">{ CURRENCY }</span>
                                             <Link to={`/offer/${i.id}`} key={i.id}>
                                                 <i className="fal fa-pen"></i>
                                             </Link>
@@ -47,7 +50,7 @@ const CartPage = () => {
                                 <label>Total</label>
                                 <div className="price">
                                     <span className="value">{ total }.-</span>
-                                    <span className="currency">CHF</span>
+                                    <span className="currency">{ CURRENCY }</span>
                                 </div>
                             </div>
                         </div>

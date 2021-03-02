@@ -9,6 +9,8 @@ import CartContextProvider from './contexts/cart'
 
 // Import libs style
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 // Import personal styles
 import './styles/global.scss'

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
 // Import components
-import Banner from '../../components/banner'
 import Rating from '../../components/rating'
 import AppLoader from '../../components/loaders'
 import ErrorPage from '../error'
@@ -10,6 +9,10 @@ import ErrorPage from '../error'
 // Import contexts
 import useFetch from '../../../customHooks/useFetch'
 import { CartContext } from '../../../contexts/cart'
+
+// Import tools
+import { CURRENCY } from '../../../tools/helpers'
+import CustomCarousel from '../../components/carousel'
 
 
 const OfferDetail = () => {
@@ -50,15 +53,15 @@ const OfferDetail = () => {
 
     return(
         <div className="offer-detail gradiant">
-            <Banner title="Offer detail" />
+            <CustomCarousel />
 
             <section className="container">
                 <div className="row">
                     <div className="col col-md-8 col-12">
-                        <h2>{ data.title }</h2>
+                        <h1>{ data.title }</h1>
                         <div className="details">
-                            <div className="location">Bex, VS</div>
-                            <div className="category">Excursion</div>
+                            <div className="location">{ data.location }</div>
+                            <div className="category">{ data.category }</div>
                             <div className="ratings">{ ratings() }</div>
                         </div>
                         <p>{ data.description }</p>
@@ -78,7 +81,7 @@ const OfferDetail = () => {
 
                                 <div className="price">
                                     <span className="value">{ data.price }.-</span>
-                                    <span className="currency">CHF</span>
+                                    <span className="currency">{ CURRENCY }</span>
                                 </div>
                             </div>
 
@@ -87,7 +90,7 @@ const OfferDetail = () => {
 
                                 <div className="value">
                                     <span className="value">{ count * data.price }.-</span>
-                                    <span className="currency">CHF</span>
+                                    <span className="currency">{ CURRENCY }</span>
                                 </div>
                             </div>
 

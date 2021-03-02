@@ -5,3 +5,5 @@ const isInt = n => {
 export const getFormatedPrice = value => {
     return isInt(value) ? `${value}.-` : value.toFixed(2)
 }
+
+export const CURRENCY = 'CHF'
