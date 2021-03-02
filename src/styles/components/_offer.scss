@@ -1,0 +1,43 @@
+.offer-detail {
+    .sticky {
+        position: sticky;
+        top: 80px;
+    }
+    .counter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0;
+        input {
+            width: 40px;
+            height: 40px;
+            margin: 0 15px;
+            text-align: center;
+        }
+    }
+    span {
+        &.value {
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 700;
+        }
+        &.currency {
+            text-transform: uppercase;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            margin-left: 5px;
+        }
+    }
+    .total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 0;
+        label {
+            font-weight: 700;
+            font-style: italic;
+            font-size: 24px;
+        }
+    }
+}
