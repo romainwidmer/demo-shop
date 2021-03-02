@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 // Import custom hooks
 import useWindowResize from '../../../customHooks/useWindowResize'
 
+// Import contexts
+import { CartContext } from '../../../contexts/cart'
 
 // Import tools
 import * as ROUTES from '../../../tools/routes'
@@ -13,11 +15,10 @@ import { getFormatedPrice } from '../../../tools/helpers'
 const Navbar = () => {
     const [open, setOpen] = useState(false)
     const [isNavTop, setIsNavTop] = useState(true)
+    const { total, totalItemsInCart } = useContext(CartContext)
     const isMobile = useWindowResize()
 
     const user = null
-    const totalItemsInCart = 0
-    const total = 0
 
     useEffect(() => {
         document.addEventListener('scroll', () => {
