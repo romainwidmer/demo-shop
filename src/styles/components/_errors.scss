@@ -1,3 +1,25 @@
+.error-container {
+    &.fetch-error {
+        text-align: center;
+        p {
+            font-size: 26px;
+            color: $main-member
+        }
+    }
+
+    .oups {
+        margin-top: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        h1 {
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+}
+
 .not-found {
     .banner {
         display: flex;
@@ -44,24 +66,8 @@
             }
         }
     }
-}
-
-.action {
-    text-align: center;
-}
-
-$nav-height: 80px;
-$footer-height: 656px;
-
-.oups {
-    min-height: calc(100vh - #{$footer-height} - #{$nav-height});
-    margin-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    h1 {
-        width: 100%;
+    .action {
+        text-align: center;
     }
 }
 
