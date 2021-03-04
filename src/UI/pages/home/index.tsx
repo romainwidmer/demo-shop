@@ -4,7 +4,7 @@ import React from 'react'
 import Banner from '../../components/banner'
 import ListingHome from '../listing/home'
 import AppLoader from '../../components/loaders'
-import ErrorPage from '../error'
+import { FetchError } from '../error'
 
 // Import custom hooks
 import useFetch, { API_URL } from '../../../customHooks/useFetch'
@@ -14,21 +14,20 @@ import { OfferType } from '../../../tools/types'
 
 const HomePage = () => {
     const { data, loading, error } = useFetch<OfferType[]>(`${API_URL}/offers?ratings=5`)
-
-    if(loading) return <AppLoader />
     
-    //@ts-ignore
-    if(error) return <ErrorPage message={error.message} />
-
-
     return(
         <div>
-            <Banner title="Home page" componentName='home' />
+            <Banner title="Les offres les mieux classées" componentName='home' />
 
-            <div className="container">
-                <h1>Les offres les mieux classées</h1>
+            <section className="container">
+                <h2>Les offres ayants été les mieux notées</h2>
+                
+                { loading && <AppLoader /> }
+
+                { error && <FetchError message={error} /> }
+
                 { data && <ListingHome data={data} /> }
-            </div>
+            </section>
         </div>
     )
 }

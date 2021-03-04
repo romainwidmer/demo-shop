@@ -8,7 +8,7 @@ type Props = {
 }
 
 const Oups:React.FC<Props> = ({ message }) => (
-    <div className="oups container">
+    <section className="error-container oups container">
         <h1>{ message ? message : `Oups, une erreur s'est glissée !` }</h1>
 
         <div className="actions">
@@ -17,7 +17,7 @@ const Oups:React.FC<Props> = ({ message }) => (
                 <HomeLink />
             </div>
         </div>
-    </div>
+    </section>
 )
 
 export default Oups

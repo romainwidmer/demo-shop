@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 // Import components
 import Rating from '../../components/rating'
 import AppLoader from '../../components/loaders'
-import ErrorPage from '../error'
+import { FetchError } from '../error'
 import CustomCarousel from '../../components/carousel'
 
 // Import contexts
@@ -28,18 +28,12 @@ const OfferDetail:React.FC = () => {
     useEffect(() => {
         if(data) {
             if(isOfferInCart(data)) {
-                ////@ts-ignore
                 const offerInCart = cartItems.find((o: OfferType) => o.id === data.id)
                 setCount(offerInCart.qte)
             }
         }
     }, [loading])
     
-    if(loading) return <AppLoader />
-    //@ts-ignore
-    if(error) return <ErrorPage message={error.message} />
-    if(!data) return <p>Aucune donnée disponible</p>
-
     const increment = () => setCount(prev => prev + 1)
 
     const decrement = () => count > 0 ?? setCount(prev => prev - 1)
@@ -49,9 +43,10 @@ const OfferDetail:React.FC = () => {
     const handleAddToCart = () => addToCart(data, count)
 
     const ratings = () => {
+        if(!data) return
+
         let ratings = []
 
-        //@ts-ignore
         for(let i = 0; i < data.ratings; i++) {
             ratings.push(<Rating key={i} />)
         }
@@ -64,50 +59,56 @@ const OfferDetail:React.FC = () => {
             <CustomCarousel />
 
             <section className="container">
-                <div className="row">
-                    <div className="col col-md-8 col-12">
-                        <h1>{ data.title }</h1>
-                        <div className="details">
-                            <div className="location">{ data.location }</div>
-                            <div className="category">{ data.category }</div>
-                            <div className="ratings">{ ratings() }</div>
-                        </div>
-                        <p>{ data.description }</p>
-                    </div>
 
-                    <div className="col col-md-4 col-12">
-                        <div className="sticky">
-                            <h2>Add this offer to your cart</h2>
+                { loading && <AppLoader /> }
 
-                            <div className="counter">
-                                <div className="actions">
-                                    <span onClick={decrement}><i className="fa fa-minus"></i></span>
-                                    <input type="text" value={count} readOnly />
-                                    <span onClick={increment}><i className="fa fa-plus"></i></span>
-                                    <span className="ml-15" onClick={reset}><i className="fal fa-trash-alt"></i></span>
-                                </div>
-
-                                <div className="price">
-                                    <span className="value">{ data.price }.-</span>
-                                    <span className="currency">{ CURRENCY }</span>
-                                </div>
+                { error ? <FetchError message={error} /> : data && 
+                    <div className="row">
+                        <div className="col col-md-8 col-12">
+                            <h1>{ data.title }</h1>
+                            <div className="details">
+                                <div className="location">{ data.location }</div>
+                                <div className="category">{ data.category }</div>
+                                <div className="ratings">{ ratings() }</div>
                             </div>
+                            <p>{ data.description }</p>
+                        </div>
 
-                            <div className="total">
-                                <label>Total</label>
+                        <div className="col col-md-4 col-12">
+                            <div className="sticky">
+                                <h2>Add this offer to your cart</h2>
 
-                                <div className="value">
-                                    <span className="value">{ count * data.price }.-</span>
-                                    <span className="currency">{ CURRENCY }</span>
+                                <div className="counter">
+                                    <div className="actions">
+                                        <span onClick={decrement}><i className="fa fa-minus"></i></span>
+                                        <input type="text" value={count} readOnly />
+                                        <span onClick={increment}><i className="fa fa-plus"></i></span>
+                                        <span className="ml-15" onClick={reset}><i className="fal fa-trash-alt"></i></span>
+                                    </div>
+
+                                    <div className="price">
+                                        <span className="value">{ data.price }.-</span>
+                                        <span className="currency">{ CURRENCY }</span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <button className="button booking" onClick={handleAddToCart}>
-                            <label>{ isOfferInCart(data) ? 'update cart' : 'Add to cart' }</label>
-                            </button>
+                                <div className="total">
+                                    <label>Total</label>
+
+                                    <div className="value">
+                                        <span className="value">{ count * data.price }.-</span>
+                                        <span className="currency">{ CURRENCY }</span>
+                                    </div>
+                                </div>
+
+                                <button className="button booking" onClick={handleAddToCart}>
+                                <label>{ isOfferInCart(data) ? 'update cart' : 'Add to cart' }</label>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
+
             </section>
         </div>
     )

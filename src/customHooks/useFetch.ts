@@ -1,10 +1,6 @@
-/**
- * A generic Fetch hook
- */
 import { useState, useEffect } from 'react'
 
 export const API_URL = 'http://localhost:3001'
-
 
 export default function useFetch<Payload>(url: string): {
     data: Payload | null;
@@ -35,8 +31,8 @@ export default function useFetch<Payload>(url: string): {
 
                 setData(jsonData)
             } catch(err) {
-                console.log(err)
-                setError(err)
+                console.log(err.message)
+                setError(err.message)
             } finally {
                 setLoading(false)
             }

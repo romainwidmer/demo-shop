@@ -44,6 +44,8 @@ const SingleTab:React.FC<SingleTabType> = ({ route, title, total=null }) => {
     const [hover, setHover] = useState<boolean>(false)
     const location = useLocation()
 
+    console.log(location.pathname === route)
+
     if(location.pathname === route) {
         if(!active) setActive(true)
     } else {
@@ -65,7 +67,7 @@ const SingleTab:React.FC<SingleTabType> = ({ route, title, total=null }) => {
     }
 
     return(
-        <li className={`nav-item nav-link ${active || hover && 'active'}`}
+        <li className={`nav-item nav-link ${active || hover ? 'active': ''}`}
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >

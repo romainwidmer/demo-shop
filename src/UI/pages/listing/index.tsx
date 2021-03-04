@@ -4,7 +4,7 @@ import { Switch, Route, useParams } from 'react-router-dom'
 // Import components
 import Banner from '../../components/banner'
 import AppLoader from '../../components/loaders'
-import ErrorPage from '../error'
+import ErrorPage, { FetchError } from '../error'
 import FilterComponent from '../../components/filters'
 import NavTabs from '../../components/navs/tabs'
 import ListingBlock from '../../components/listing'
@@ -89,19 +89,14 @@ const ListingPage:React.FC = () => {
 
     }, [locationFilter])
 
-    if(loading) return <AppLoader />
-    //@ts-ignore
-    if(error) return <ErrorPage message={error.message} />
-
     //@ts-ignore
     const setFilters = (values: FilterType[], cat: string) => {
-        console.log({ values, cat })
         if(cat === 'location') setLocationFilter(values)
     }
 
     //--- Filters location preps
     //@ts-ignore
-    let locations = data.map(offer => offer.location)
+    let locations = data && data.map(offer => offer.location)
     //@ts-ignore
     locations =  [].concat.apply([], locations)
     locations = Array.from(new Set(locations))
@@ -123,33 +118,41 @@ const ListingPage:React.FC = () => {
             <section className="container">
                 <h2>Toutes les offres</h2>
 
-                <div className="filter-component">
-                    <div className="selects-wrapper">
-                        <FilterComponent
-                            categories={locationObject}
-                            setFilters={setFilters}
-                            cat={"location"}
-                            placeholder="Filter par location"
-                        />
-                    </div>
-                </div>
+                { loading && <AppLoader /> }
 
-                {/**@ts-ignore */}
-                <NavTabs items={listingNav} totals={totalByType} sticky />
-
-                <Switch>
-                    {listingNav.map((route, i) => (
-                        <Route
-                            key={i}
-                            path={route.route}
-                            render={() => (
-                                <route.component
-                                    offers={id === 'sport' ? sportOffersFiltered : id === 'food' ? foodOffersFiltered : travelOffersFiltered}
+                { error ? <FetchError message={error} /> : 
+                    <>
+                        <div className="filter-component">
+                            <div className="selects-wrapper">
+                                <FilterComponent
+                                    categories={locationObject}
+                                    setFilters={setFilters}
+                                    cat={"location"}
+                                    placeholder="Filter par location"
                                 />
-                            )}
-                        />
-                    ))}
-                </Switch>
+                            </div>
+                        </div>
+                        
+                        {/**@ts-ignore */}
+                        <NavTabs items={listingNav} totals={totalByType} sticky />
+        
+                        <Switch>
+                            {listingNav.map((route, i) => (
+                                <Route
+                                    key={i}
+                                    path={route.route}
+                                    render={() => (
+                                        <route.component
+                                            offers={id === 'sport' ? sportOffersFiltered : id === 'food' ? foodOffersFiltered : travelOffersFiltered}
+                                        />
+                                    )}
+                                />
+                            ))}
+                        </Switch>
+                    </>
+                }
+
+
 
             </section>
         </div>

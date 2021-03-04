@@ -268,10 +268,8 @@
                 a {
                     width: 100%;
                     display: block;
-                }
-                &.active {
-                    a {
-                        color: $main-blue !important;
+                    &.active {
+                        color: $main-blue;
                     }
                 }
             }

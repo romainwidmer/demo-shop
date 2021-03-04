@@ -12,3 +12,9 @@ const ErrorPage:React.FC<Props> = ({ message }) => (
 )
 
 export default ErrorPage
+
+export const FetchError:React.FC<Props> = ({ message }) => (
+    <div className="error-container fetch-error">
+        <p>{ message }</p>
+    </div>
+)

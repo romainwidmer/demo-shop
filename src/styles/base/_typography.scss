@@ -107,6 +107,6 @@ a {
     transition: .3s;
     &:hover, &.active {
         text-decoration: none;
-        color: $main-yellow!important;
+        color: $main-yellow;
     }
 }
