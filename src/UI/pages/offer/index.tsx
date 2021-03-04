@@ -5,26 +5,18 @@ import { useParams } from 'react-router-dom'
 import Rating from '../../components/rating'
 import AppLoader from '../../components/loaders'
 import ErrorPage from '../error'
+import CustomCarousel from '../../components/carousel'
 
 // Import contexts
-import useFetch from '../../../customHooks/useFetch'
 import { CartContext } from '../../../contexts/cart'
+
+// Import custom hooks
+import useFetch from '../../../customHooks/useFetch'
 
 // Import tools
 import { CURRENCY } from '../../../tools/helpers'
-import CustomCarousel from '../../components/carousel'
+import { OfferType, RouterType } from '../../../tools/types'
 
-type RouterType = {
-    id: string
-}
-
-type OfferType = {
-    id: number,
-    title: string,
-    description: string,
-    price: number,
-    ratings: number
-}
 
 const OfferDetail:React.FC = () => {
     const { id } = useParams<RouterType>()

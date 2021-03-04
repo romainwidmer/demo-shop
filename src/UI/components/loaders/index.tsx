@@ -1,6 +1,7 @@
 import React from 'react'
 import Loader from 'react-loader-spinner'
 
+
 type Props = {
     type?: "Audio"
         |"BallTriangle"

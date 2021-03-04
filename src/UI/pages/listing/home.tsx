@@ -3,7 +3,9 @@ import React from 'react'
 // Import components
 import Card from '../../components/cards'
 
-import { OfferType } from '../home'
+// Import tools
+import { OfferType } from '../../../tools/types'
+
 
 type Props = {
     data: OfferType[]

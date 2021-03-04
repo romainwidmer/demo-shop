@@ -1,26 +1,31 @@
 import { useState, useEffect } from 'react'
 
 
-
-export default function useFetch(url: string) {
-    const [data, setData] = useState(null)
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(true)
+export default function useFetch<Payload>(url: string): {
+    data: Payload | null;
+    loading: boolean;
+    error: string | null;
+} {
+    const [data, setData] = useState<Payload | null>(null)
+    const [loading, setLoading] = useState<boolean>(true)
+    const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true)
             setError(null)
 
-            
             try {
-                const response = (await (await fetch(`http://localhost:3001/${url}`)).json())
-                
-                if(Object.keys(response).length === 0) {
-                    throw new Error(`Cette offre n'est pas disponible`)
+                const response = await fetch(url)
+                if(!response) throw new Error('No response')
+
+                const jsonData: Payload = await response.json()
+
+                if(Object.keys(jsonData).length === 0) {
+                    throw new Error(`No data`)
                 }
 
-                setData(response)
+                setData(jsonData)
             } catch(err) {
                 console.log(err)
                 setError(err)

@@ -1,24 +1,14 @@
 import React, { useState, useEffect, createContext } from 'react'
+import { CartItem } from '../tools/types'
 
 // @ts-ignore TODO: fix this
 const storage = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
 
 export const CartContext = createContext(null)
 
-type Props = {
-    children: any
-}
 
-export type CartItemType = {
-    id: number,
-    title: string,
-    description: string,
-    price: number,
-    qte: number
-}
-
-const CartContextProvider = ({ children }: Props) => {
-    const [cartItems, setCartItems] = useState<CartItemType[]>(storage)
+const CartContextProvider:React.FC = ({ children }) => {
+    const [cartItems, setCartItems] = useState<CartItem[]>(storage)
     const [total, setTotal] = useState<number>(0)
 
     useEffect(() => {
@@ -28,7 +18,6 @@ const CartContextProvider = ({ children }: Props) => {
             let tot = 0
     
             for(const item of cartItems) {
-                tot += item.qte * item.price
             }
     
             setTotal(tot)
@@ -39,15 +28,19 @@ const CartContextProvider = ({ children }: Props) => {
     }, [cartItems])
 
 
-    const addToCart = (data: CartItemType, qte: number) => {
+    const addToCart = (data: CartItem, qte: number) => {
         if(qte === 0) {
             removeFromCart(data)
             return
         }
 
-        data.qte = qte
+        if(data.qte) {
+            data.qte = qte
+        }
 
-        const offerFoundInCart = cartItems.find(i => i.id === data.id)
+        //data.qte = qte
+
+        const offerFoundInCart = cartItems.find(i => i.item.id === data.item.id)
         
         if(offerFoundInCart) {
             updateCart(data)
@@ -57,8 +50,8 @@ const CartContextProvider = ({ children }: Props) => {
         setCartItems(prev => [...prev, data])
     }
 
-    const updateCart = (data: CartItemType) => {
-        const offerIndex = cartItems.findIndex(i => i.id === data.id)
+    const updateCart = (data: CartItem) => {
+        const offerIndex = cartItems.findIndex(i => i.item.id === data.item.id)
 
         const newArray = [...cartItems]
         newArray[offerIndex] = data
@@ -66,8 +59,8 @@ const CartContextProvider = ({ children }: Props) => {
         setCartItems(newArray)
     }
 
-    const removeFromCart = (data: CartItemType) => {
-        const newData = cartItems.filter(item => item.id !== data.id)
+    const removeFromCart = (data: CartItem) => {
+        const newData = cartItems.filter(item => item.item.id !== data.item.id)
         setCartItems(newData)
     }
 
@@ -76,8 +69,8 @@ const CartContextProvider = ({ children }: Props) => {
     }
 
     //--- Helpers
-    const isOfferInCart = (data: CartItemType) => {
-        const result = cartItems.find(i => i.id === data.id)
+    const isOfferInCart = (data: CartItem) => {
+        const result = cartItems.find(i => i.item.id === data.item.id)
 
         return result !== undefined
     }

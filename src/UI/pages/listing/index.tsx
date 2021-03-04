@@ -14,6 +14,7 @@ import useFetch from '../../../customHooks/useFetch'
 
 // Import tools
 import { LISTING_PAGE_SPORT, LISTING_PAGE_FOOD, LISTING_PAGE_TRAVEL } from '../../../tools/routes'
+import { OfferType, RouterType, FilterType } from '../../../tools/types'
 
 
 const listingNav = [
@@ -38,19 +39,19 @@ const listingNav = [
 ]
 
 
-const ListingPage = () => {
-    const { data, loading, error } = useFetch('offers')
-    const [locationFilter, setLocationFilter] = useState([])
+const ListingPage:React.FC = () => {
+    const { data, loading, error } = useFetch<OfferType[]>('http://localhost:3001/offers')
+    const [locationFilter, setLocationFilter] = useState<FilterType[] | []>([])
 
-    const [sportOffers, setSportOffers] = useState([])
-    const [foodOffers, setFoodOffers] = useState([])
-    const [travelOffers, setTravelOffers] = useState([])
+    const [sportOffers, setSportOffers] = useState<OfferType[] | []>([])
+    const [foodOffers, setFoodOffers] = useState<OfferType[] | []>([])
+    const [travelOffers, setTravelOffers] = useState<OfferType[] | []>([])
 
-    const [sportOffersFiltered, setSportOffersFiltered] = useState([])
-    const [foodOffersFiltered, setFoodOffersFiltered] = useState([])
-    const [travelOffersFiltered, setTravelOffersFiltered] = useState([])
+    const [sportOffersFiltered, setSportOffersFiltered] = useState<OfferType[] | []>([])
+    const [foodOffersFiltered, setFoodOffersFiltered] = useState<OfferType[] | []>([])
+    const [travelOffersFiltered, setTravelOffersFiltered] = useState<OfferType[] | []>([])
 
-    const { id } = useParams()
+    const { id } = useParams<RouterType>()
 
     useEffect(() => {
         if(data) {
@@ -68,11 +69,12 @@ const ListingPage = () => {
             return
         }
 
-        let locations = []
+        let locations: string[] = []
         let sportOutput = sportOffers
         let foodOutput = foodOffers
         let travelOutput = travelOffers
 
+        //@ts-ignore
         locations = locationFilter.map(({ value }) => value)
 
         if (locations.length > 0) {
@@ -88,18 +90,23 @@ const ListingPage = () => {
     }, [locationFilter])
 
     if(loading) return <AppLoader />
+    //@ts-ignore
     if(error) return <ErrorPage message={error.message} />
 
-    const setFilters = (values, cat) => {
+    //@ts-ignore
+    const setFilters = (values: FilterType[], cat: string) => {
+        console.log({ values, cat })
         if(cat === 'location') setLocationFilter(values)
     }
 
     //--- Filters location preps
+    //@ts-ignore
     let locations = data.map(offer => offer.location)
+    //@ts-ignore
     locations =  [].concat.apply([], locations)
     locations = Array.from(new Set(locations))
 
-    let locationObject = []
+    let locationObject: any = []
     locations.map(location => location !== null && locationObject.push({ label:location, value: location, cat: 'location' }))
 
     const totalByType = {
@@ -127,6 +134,7 @@ const ListingPage = () => {
                     </div>
                 </div>
 
+                {/**@ts-ignore */}
                 <NavTabs items={listingNav} totals={totalByType} sticky />
 
                 <Switch>

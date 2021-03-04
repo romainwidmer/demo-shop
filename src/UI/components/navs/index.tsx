@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, ContextType } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 
 // Import custom hooks

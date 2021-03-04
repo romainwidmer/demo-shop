@@ -7,10 +7,11 @@ import { CustomButton } from '../../components/buttons'
 import EmptyCart from '../../components/cart/empty'
 
 // Import contexts
-import { CartContext, CartItemType } from '../../../contexts/cart'
+import { CartContext } from '../../../contexts/cart'
 
 // Import tools
 import { CURRENCY } from '../../../tools/helpers'
+import { CartItem } from '../../../tools/types'
 
 
 
@@ -32,17 +33,17 @@ const CartPage:React.FC<null> = () => {
                         <div className="resume">
                             <h2>Resume</h2>
                             <ul>
-                                {cartItems.map((i: CartItemType) => (
-                                    <li key={i.id}>
+                                {cartItems.map((i: CartItem) => (
+                                    <li key={i.item.id}>
                                         <div className="label">
                                             <span>{ i.qte }x</span>
-                                            <span>{ i.title }</span>
+                                            <span>{ i.item.title }</span>
                                         </div>
 
                                         <div className="price">
-                                            <span className="value">{ i.price }.-</span>
+                                            <span className="value">{ i.item.price }.-</span>
                                             <span className="currency">{ CURRENCY }</span>
-                                            <Link to={`/offer/${i.id}`} key={i.id}>
+                                            <Link to={`/offer/${i.item.id}`} key={i.item.id}>
                                                 <i className="fal fa-pen"></i>
                                             </Link>
                                         </div>

@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Select from 'react-select'
+import { FilterType } from '../../../tools/types'
+
 
 type Props = {
     categories: [],
-    setFilters: (newState: {}, cat: string) => void,
+    setFilters: (values: FilterType[], cat: string) => void,
     cat: string,
     placeholder: string
 }
 
-/**
- * This component handle the listing page
- * @param {Array} offersArray
- */
 const FilterComponent:React.FC<Props> = ({ categories, setFilters, cat, placeholder }) => {
-    const [selectedFilters, setSelectedFilters] = useState([])
+    const [selectedFilters, setSelectedFilters] = useState<FilterType[]>([])
 
     useEffect(() => {
         const newState = Array.from(new Set(selectedFilters))

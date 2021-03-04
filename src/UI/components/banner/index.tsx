@@ -1,10 +1,12 @@
+import React from 'react'
+
+
 type Props = {
     title: string,
     componentName?: string
 }
 
-
-const Banner = ({ title, componentName }: Props) => {
+const Banner:React.FC<Props> = ({ title, componentName }) => {
     const url = 'https://picsum.photos/1920/1280'
 
     return(

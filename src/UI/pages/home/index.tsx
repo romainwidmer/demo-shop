@@ -8,23 +8,16 @@ import ErrorPage from '../error'
 
 // Import custom hooks
 import useFetch from '../../../customHooks/useFetch'
+import { OfferType } from '../../../tools/types'
 
-export type OfferType = {
-	id: number;
-	title: string;
-	description: string;
-	category: string;
-	price: number;
-	ratings: number;
-}
 
 
 const HomePage = () => {
-    const { data, loading, error } = useFetch('offers?ratings=5')
+    const { data, loading, error } = useFetch<OfferType[]>('http://localhost:3001/offers?ratings=5')
 
     if(loading) return <AppLoader />
     
-// @ts-ignore TODO: fix this
+    //@ts-ignore
     if(error) return <ErrorPage message={error.message} />
 
 
@@ -33,8 +26,7 @@ const HomePage = () => {
             <Banner title="Home page" componentName='home' />
             <h1>Les offres les mieux classées</h1>
 
-            {/* @ts-ignore */}
-            <ListingHome data={data} />
+            { data && <ListingHome data={data} /> }
         </div>
     )
 }

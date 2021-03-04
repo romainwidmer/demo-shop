@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 // Import tools
 import { HOME_PAGE } from '../../../tools/routes'
 
+
 type CustomButtonProps = {
     label: string,
     color?: string,
@@ -12,7 +13,7 @@ type CustomButtonProps = {
 }
 
 
-export const CustomButton = ({ label, color='blue-grey', type='submit', handleClick }: CustomButtonProps) => (
+export const CustomButton:React.FC<CustomButtonProps> = ({ label, color='blue-grey', type='submit', handleClick }) => (
     <button type={type} className={`button ${color}`} onClick={handleClick}>
         <label>{ label }</label>
     </button>
@@ -24,7 +25,7 @@ type CustomLinkProps = {
     color?: string
 }
 
-export const CustomLink = ({ label, route, color='blue-grey' }: CustomLinkProps) => (
+export const CustomLink:React.FC<CustomLinkProps> = ({ label, route, color='blue-grey' }) => (
     <Link to={route} className={`button ${color}`}>
         <label>{ label }</label>
     </Link>
@@ -35,6 +36,6 @@ type HomeLinkProps = {
     color?: string
 }
 
-export const HomeLink = ({ color='blue-grey' }: HomeLinkProps) => (
+export const HomeLink:React.FC<HomeLinkProps> = ({ color='blue-grey' }) => (
     <CustomLink route={HOME_PAGE} label={'découvrir les offres'} color={color} />
 )

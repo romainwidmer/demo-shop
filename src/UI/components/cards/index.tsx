@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom'
 
 // Import tools
 import { CURRENCY } from '../../../tools/helpers'
+import { OfferType } from '../../../tools/types'
 
-export type OfferType = {
-    id: number,
-    title: string,
-    price: number
-}
 
 type Props = {
     data: OfferType

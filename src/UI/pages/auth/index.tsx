@@ -1,4 +1,4 @@
-import React, { ElementType, useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Switch, Route, useParams, useLocation, NavLink } from 'react-router-dom'
 
 // Import components
@@ -8,18 +8,7 @@ import SignupPage from './signup'
 
 // Import tools
 import { LOGIN_PAGE, SIGNUP_PAGE } from '../../../tools/routes'
-
-type NavLinkType = {
-    id: number,
-    title: string,
-    route: string,
-    component: () => JSX.Element
-}
-
-
-type RouterType = {
-    id: string
-}
+import { RouterType, NavLinkType } from '../../../tools/types'
 
 
 const authNav: NavLinkType[] = [
@@ -36,8 +25,6 @@ const authNav: NavLinkType[] = [
         component: SignupPage
     }
 ]
-
-
 
 
 const AuthIndex = ()  => {

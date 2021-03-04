@@ -1,13 +1,15 @@
 import React from 'react'
 
 // Import components
-import Card, { OfferType } from '../cards'
+import Card from '../cards'
+
+// Import tools
+import { OfferType } from '../../../tools/types'
 
 
 type OffersType = {
     offers: OfferType[]
 }
-
 
 const ListingBlock:React.FC<OffersType> = ({ offers }) => (
     <section>
@@ -19,7 +21,9 @@ const ListingBlock:React.FC<OffersType> = ({ offers }) => (
                     </li>
                 ))}
             </ul>
-            ) : <p className="center">Aucune offre ne correspond aux critères sélectionnés. Regardez toutefois dans les autres onglets.</p>
+            ) : <p className="center">
+                    Aucune offre ne correspond aux critères sélectionnés. Regardez toutefois dans les autres onglets.
+                </p>
         }
     </section>
 )
