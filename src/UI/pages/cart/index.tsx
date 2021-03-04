@@ -27,7 +27,7 @@ const CartPage:React.FC<null> = () => {
                 {cartItems.length >= 1 ? (
                     <div className="row">
                     <div className="col col-md-8 col-12">
-                        User login
+                        User login could come here if the user is not connected yet
                     </div>
 
                     <div className="col col-md 4 col-12">
