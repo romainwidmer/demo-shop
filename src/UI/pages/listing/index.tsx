@@ -4,7 +4,7 @@ import { Switch, Route, useParams } from 'react-router-dom'
 // Import components
 import Banner from '../../components/banner'
 import AppLoader from '../../components/loaders'
-import ErrorPage, { FetchError } from '../error'
+import { FetchError } from '../error'
 import FilterComponent from '../../components/filters'
 import NavTabs from '../../components/navs/tabs'
 import ListingBlock from '../../components/listing'
@@ -151,9 +151,6 @@ const ListingPage:React.FC = () => {
                         </Switch>
                     </>
                 }
-
-
-
             </section>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import {  BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 
 // Import components
@@ -9,7 +9,7 @@ import HomePage from './UI/pages/home'
 import ListingPage from './UI/pages/listing'
 import OfferDetail from './UI/pages/offer'
 import Footer from './UI/components/footer'
-import PageNotFound from './UI/pages/error/notFound'
+import { PageNotFound } from './UI/pages/error'
 import UserPage from './UI/pages/user'
 
 // Import contexts
@@ -56,13 +56,6 @@ type Props = {
 const PrivateRoute:React.FC<Props> = ({ component: Component, ...rest }) => {
     //@ts-ignore
     const { user } = useContext(AuthContext)
-
-    console.log()
-
-    useEffect(() => {
-        //getUser()
-    }, [])
-
 
     return(
         <Route {...rest} render={(props) => (
