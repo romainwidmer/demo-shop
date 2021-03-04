@@ -4,10 +4,10 @@ import { Switch, Route, useParams } from 'react-router-dom'
 // Import components
 import Banner from '../../components/banner'
 import AppLoader from '../../components/loaders'
-import { FetchError } from '../error'
 import FilterComponent from '../../components/filters'
 import NavTabs from '../../components/navs/tabs'
 import ListingBlock from '../../components/listing'
+import { FetchError } from '../error'
 
 // Import custom hooks
 import useFetch from '../../../customHooks/useFetch'
@@ -89,16 +89,12 @@ const ListingPage:React.FC = () => {
 
     }, [locationFilter])
 
-    //@ts-ignore
     const setFilters = (values: FilterType[], cat: string) => {
         if(cat === 'location') setLocationFilter(values)
     }
 
     //--- Filters location preps
-    //@ts-ignore
     let locations = data && data.map(offer => offer.location)
-    //@ts-ignore
-    locations =  [].concat.apply([], locations)
     locations = Array.from(new Set(locations))
 
     let locationObject: any = []
@@ -120,7 +116,7 @@ const ListingPage:React.FC = () => {
 
                 { loading && <AppLoader /> }
 
-                { error ? <FetchError message={error} /> : 
+                { error ? <FetchError message={error} /> : data &&
                     <>
                         <div className="filter-component">
                             <div className="selects-wrapper">

@@ -11,12 +11,13 @@ import { CartContext } from '../../../contexts/cart'
 
 // Import tools
 import { CURRENCY } from '../../../tools/helpers'
-import { CartItem } from '../../../tools/types'
+import { CartType } from '../../../tools/types'
 
 
 
 const CartPage:React.FC<null> = () => {
-    const { cartItems, total, clearCart } = useContext<any>(CartContext)
+    //@ts-ignore
+    const { cartItems, total, clearCart } = useContext(CartContext)
 
     return(
         <div className="cart">
@@ -33,17 +34,17 @@ const CartPage:React.FC<null> = () => {
                         <div className="resume">
                             <h2>Resume</h2>
                             <ul>
-                                {cartItems.map((i: CartItem) => (
-                                    <li key={i.item.id}>
+                                {cartItems.map((i: CartType) => (
+                                    <li key={i.id}>
                                         <div className="label">
                                             <span>{ i.qte }x</span>
-                                            <span>{ i.item.title }</span>
+                                            <span>{ i.title }</span>
                                         </div>
 
                                         <div className="price">
-                                            <span className="value">{ i.item.price }.-</span>
+                                            <span className="value">{ i.price }.-</span>
                                             <span className="currency">{ CURRENCY }</span>
-                                            <Link to={`/offer/${i.item.id}`} key={i.item.id}>
+                                            <Link to={`/offer/${i.id}`} key={i.id}>
                                                 <i className="fal fa-pen"></i>
                                             </Link>
                                         </div>

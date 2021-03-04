@@ -33,15 +33,15 @@ const AuthIndex = ()  => {
 
     useEffect(() => {
         if(id === 'login') {
-            setTitle("Login")
+            setTitle("Connexion")
         } else if(id === 'signup') {
-            setTitle("Signup")
+            setTitle("Créer compte")
         }
     }, [id])
 
     return(
         <div>
-            <Banner title="Login / Signup" />
+            <Banner title="Identification" />
 
             <section className="container">
                 <h2>{ title }</h2>

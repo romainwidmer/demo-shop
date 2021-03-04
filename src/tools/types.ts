@@ -8,8 +8,14 @@ export type OfferType = {
     location: string
 }
 
-export type CartItem = {
-    item: OfferType,
+export type CartType = {
+    id: number,
+    title: string,
+    description: string,
+    price: number,
+    ratings: number,
+    category: string,
+    location: string,
     qte: number
 }
 

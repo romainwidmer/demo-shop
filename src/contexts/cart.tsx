@@ -1,14 +1,15 @@
 import React, { useState, useEffect, createContext } from 'react'
-import { CartItem } from '../tools/types'
+import { CartType } from '../tools/types'
 
-// @ts-ignore TODO: fix this
-const storage = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+
+const cart = localStorage.getItem('cart')
+const storage = cart ? JSON.parse(cart) : []
 
 export const CartContext = createContext(null)
 
 
 const CartContextProvider:React.FC = ({ children }) => {
-    const [cartItems, setCartItems] = useState<CartItem[]>(storage)
+    const [cartItems, setCartItems] = useState<CartType[]>(storage)
     const [total, setTotal] = useState<number>(0)
 
     useEffect(() => {
@@ -18,6 +19,7 @@ const CartContextProvider:React.FC = ({ children }) => {
             let tot = 0
     
             for(const item of cartItems) {
+                tot += item.qte * item.price
             }
     
             setTotal(tot)
@@ -28,19 +30,15 @@ const CartContextProvider:React.FC = ({ children }) => {
     }, [cartItems])
 
 
-    const addToCart = (data: CartItem, qte: number) => {
+    const addToCart = (data: CartType, qte: number) => {
         if(qte === 0) {
             removeFromCart(data)
             return
         }
+        
+        data.qte = qte
 
-        if(data.qte) {
-            data.qte = qte
-        }
-
-        //data.qte = qte
-
-        const offerFoundInCart = cartItems.find(i => i.item.id === data.item.id)
+        const offerFoundInCart = cartItems.find(item => item.id === data.id)
         
         if(offerFoundInCart) {
             updateCart(data)
@@ -50,8 +48,8 @@ const CartContextProvider:React.FC = ({ children }) => {
         setCartItems(prev => [...prev, data])
     }
 
-    const updateCart = (data: CartItem) => {
-        const offerIndex = cartItems.findIndex(i => i.item.id === data.item.id)
+    const updateCart = (data: CartType) => {
+        const offerIndex = cartItems.findIndex(item => item.id === data.id)
 
         const newArray = [...cartItems]
         newArray[offerIndex] = data
@@ -59,18 +57,15 @@ const CartContextProvider:React.FC = ({ children }) => {
         setCartItems(newArray)
     }
 
-    const removeFromCart = (data: CartItem) => {
-        const newData = cartItems.filter(item => item.item.id !== data.item.id)
+    const removeFromCart = (data: CartType) => {
+        const newData = cartItems.filter(item => item.id !== data.id)
         setCartItems(newData)
     }
 
-    const clearCart = () => {
-        setCartItems([])
-    }
+    const clearCart = () => setCartItems([])
 
-    //--- Helpers
-    const isOfferInCart = (data: CartItem) => {
-        const result = cartItems.find(i => i.item.id === data.item.id)
+    const isOfferInCart = (data:CartType) => {
+        const result = cartItems.find(item => item.id === data.id)
 
         return result !== undefined
     }

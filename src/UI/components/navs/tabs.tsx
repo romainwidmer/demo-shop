@@ -44,8 +44,6 @@ const SingleTab:React.FC<SingleTabType> = ({ route, title, total=null }) => {
     const [hover, setHover] = useState<boolean>(false)
     const location = useLocation()
 
-    console.log(location.pathname === route)
-
     if(location.pathname === route) {
         if(!active) setActive(true)
     } else {

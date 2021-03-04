@@ -36,7 +36,7 @@ const OfferDetail:React.FC = () => {
     
     const increment = () => setCount(prev => prev + 1)
 
-    const decrement = () => count > 0 ?? setCount(prev => prev - 1)
+    const decrement = () => count > 0 && setCount(prev => prev - 1)
 
     const reset = () => setCount(0)
 
@@ -53,6 +53,8 @@ const OfferDetail:React.FC = () => {
 
         return ratings
     }
+
+    console.log(count)
 
     return(
         <div className="offer-detail gradiant">

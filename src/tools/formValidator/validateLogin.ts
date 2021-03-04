@@ -6,8 +6,8 @@ type ValueType = {
 }
 
 type ErrorType = {
-    email: string | '',
-    password: string | ''
+    email: string | null,
+    password: string | null
 }
 
 export default function validateForm(values: ValueType) {

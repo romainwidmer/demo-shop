@@ -54,8 +54,8 @@ type Props = {
 }
 
 const PrivateRoute:React.FC<Props> = ({ component: Component, ...rest }) => {
-    //@ts-ignore
-    const { user } = useContext(AuthContext)
+    // TODO: fix type
+    const { user } = useContext<any>(AuthContext)
 
     return(
         <Route {...rest} render={(props) => (

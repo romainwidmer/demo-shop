@@ -23,7 +23,6 @@ type UserType = {
 
 const user = localStorage.getItem('user')
 const storage = user ? JSON.parse(user) : null
-//const storage = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null
 
 
 export const AuthContext = createContext(null)
