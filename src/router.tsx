@@ -19,7 +19,7 @@ import { AuthContext } from './contexts/auth'
 import * as ROUTES from './tools/routes'
 
 
-const AppRouter= () => (
+const AppRouter:React.FC = () => (
     <Router>
         <Navbar />
 
@@ -47,7 +47,14 @@ const AppRouter= () => (
  * This component handle the protected routes such as everything related to the customer space
  * If the access is denied, the router will redirect the customer on the login page
  */
-const PrivateRoute = ({ component: Component, ...rest }) => {
+
+type Props = {
+    path: string,
+    component: React.FC
+}
+
+const PrivateRoute:React.FC<Props> = ({ component: Component, ...rest }) => {
+    //@ts-ignore
     const { user } = useContext(AuthContext)
 
     console.log()
@@ -59,6 +66,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
     return(
         <Route {...rest} render={(props) => (
+            //@ts-ignore
             user ? <Component {...props} /> : <Redirect to={ROUTES.LOGIN_PAGE} />
         )} />
     )

@@ -33,7 +33,7 @@ export type NavLinkType = {
 }
 
 // Filters
-export type FilterType ={
+export type FilterType = {
     label: string,
     value: string,
     cat: string

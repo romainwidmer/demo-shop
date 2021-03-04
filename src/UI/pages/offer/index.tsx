@@ -11,7 +11,7 @@ import CustomCarousel from '../../components/carousel'
 import { CartContext } from '../../../contexts/cart'
 
 // Import custom hooks
-import useFetch from '../../../customHooks/useFetch'
+import useFetch, { API_URL } from '../../../customHooks/useFetch'
 
 // Import tools
 import { CURRENCY } from '../../../tools/helpers'
@@ -20,7 +20,7 @@ import { OfferType, RouterType } from '../../../tools/types'
 
 const OfferDetail:React.FC = () => {
     const { id } = useParams<RouterType>()
-    const { data, loading, error } = useFetch(`offers/${id}`)
+    const { data, loading, error } = useFetch<OfferType>(`${API_URL}/offers/${id}`)
     const [count, setCount] = useState(0)
     //@ts-ignore
     const { cartItems, addToCart, isOfferInCart } = useContext(CartContext)
@@ -28,7 +28,7 @@ const OfferDetail:React.FC = () => {
     useEffect(() => {
         if(data) {
             if(isOfferInCart(data)) {
-                //@ts-ignore
+                ////@ts-ignore
                 const offerInCart = cartItems.find((o: OfferType) => o.id === data.id)
                 setCount(offerInCart.qte)
             }
@@ -38,6 +38,7 @@ const OfferDetail:React.FC = () => {
     if(loading) return <AppLoader />
     //@ts-ignore
     if(error) return <ErrorPage message={error.message} />
+    if(!data) return <p>Aucune donnée disponible</p>
 
     const increment = () => setCount(prev => prev + 1)
 
@@ -65,16 +66,12 @@ const OfferDetail:React.FC = () => {
             <section className="container">
                 <div className="row">
                     <div className="col col-md-8 col-12">
-                        {/**@ts-ignore */}
                         <h1>{ data.title }</h1>
                         <div className="details">
-                            {/**@ts-ignore */}
                             <div className="location">{ data.location }</div>
-                            {/**@ts-ignore */}
                             <div className="category">{ data.category }</div>
                             <div className="ratings">{ ratings() }</div>
                         </div>
-                        {/**@ts-ignore */}
                         <p>{ data.description }</p>
                     </div>
 
@@ -91,7 +88,6 @@ const OfferDetail:React.FC = () => {
                                 </div>
 
                                 <div className="price">
-                                    {/**@ts-ignore */}
                                     <span className="value">{ data.price }.-</span>
                                     <span className="currency">{ CURRENCY }</span>
                                 </div>
@@ -101,7 +97,6 @@ const OfferDetail:React.FC = () => {
                                 <label>Total</label>
 
                                 <div className="value">
-                                    {/**@ts-ignore */}
                                     <span className="value">{ count * data.price }.-</span>
                                     <span className="currency">{ CURRENCY }</span>
                                 </div>

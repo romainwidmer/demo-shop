@@ -1,4 +1,9 @@
+/**
+ * A generic Fetch hook
+ */
 import { useState, useEffect } from 'react'
+
+export const API_URL = 'http://localhost:3001'
 
 
 export default function useFetch<Payload>(url: string): {
@@ -17,12 +22,15 @@ export default function useFetch<Payload>(url: string): {
 
             try {
                 const response = await fetch(url)
-                if(!response) throw new Error('No response')
 
-                const jsonData: Payload = await response.json()
+                if(response.status !== 200) {
+                    throw new Error(`L'url demandé n'est pas disponible`)
+                }
+
+                const jsonData = await response.json()
 
                 if(Object.keys(jsonData).length === 0) {
-                    throw new Error(`No data`)
+                    throw new Error(`Aucune donnée ne correspond à votre demande`)
                 }
 
                 setData(jsonData)
